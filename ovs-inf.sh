@@ -1,7 +1,7 @@
 #!/bin/bash
 #set -e
 set -x
-config="interfaces"
+config="/etc/network/interfaces"
 cp $config $config.new
 
 function check_if_br_has_ports(){
@@ -669,22 +669,22 @@ done
 
 function main(){
 #test "$@"
-add_delete_port_bridge "$@"
+#add_delete_port_bridge "$@"
 #delete_elem "$@"
 #add_delete_port_to_bridge "$@"
 #items_bridge "$1"
 #item_items "$@"
 #props $BRIDGE
-#if [[ "$@" = -h ]];then
-#    echo "help"
-#    exit 0
-#elif [[ "$@" != "" ]];then
-#	add_delete_port_bridge "$@"
-#	fix_config_file
-#	exit 0
-#else
-#	fix_config_file
-#   exit 0
-#fi
+if [[ "$@" = -h ]];then
+    echo "MANUAL PAGE TO BE DONE...SORRY! :)"
+    exit 0
+elif [[ "$@" != "" ]];then
+	add_delete_port_bridge "$@"
+	fix_config_file
+	exit 0
+else
+	fix_config_file
+   exit 0
+fi
 }
 main "$@"
